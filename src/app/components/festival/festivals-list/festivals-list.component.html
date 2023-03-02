@@ -1,0 +1,38 @@
+<table class="table table-responsive table-stripped table-hover border">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Tables</th>
+            <th>Prix espace entrée</th>
+            <th>Prix espace salle</th>
+            <th>Prix espace buvette</th>
+            <th>m² entrée</th>
+            <th>m² salle</th>
+            <th>m² buvette</th>
+            <th># tables entrée</th>
+            <th># tables salle</th>
+            <th># tables buvette</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let festival of festivals">
+            <td>{{ festival.id }}</td>
+            <td>{{ festival.name }}</td>
+            <td>{{ festival.tableTotal }}</td>
+            <td>{{ festival.tableprice_1 }}</td>
+            <td>{{ festival.tableprice_2 }}</td>
+            <td>{{ festival.tableprice_3 }}</td>
+            <td>{{ festival.sqmprice_1 }}</td>
+            <td>{{ festival.sqmprice_2 }}</td>
+            <td>{{ festival.sqmprice_3 }}</td>
+            <td>{{ festival.tablemax_1 }}</td>
+            <td>{{ festival.tablemax_2 }}</td>
+            <td>{{ festival.tablemax_3 }}</td>
+            <td>
+                <button class="btn btn-dark" (click)="onClickSelect(festival)">selectionner</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

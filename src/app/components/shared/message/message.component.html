@@ -1,0 +1,9 @@
+<div class="d-flex align-items-center flex-column">
+    <h2>Messages</h2>
+
+    <p *ngFor="let message of messageService.logs">
+        {{ message }}
+    </p>
+    
+    <button (click)="messageService.clear()">clear</button>    
+</div>

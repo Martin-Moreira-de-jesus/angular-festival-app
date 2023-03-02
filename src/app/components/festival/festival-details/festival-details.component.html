@@ -1,0 +1,12 @@
+<form [formGroup]="festivalGroup" (ngSubmit)="onSubmit()" novalidate class="d-flex align-items-center flex-column">
+    <label class="form-label">Festival name:</label>
+    <input class="form-control" type="text" [formControl]="festivalGroup.controls.name" style="max-width: 300px;">
+    <label class="form-label"># Table entrée:</label>
+    <input class="form-control" type="text" [formControl]="festivalGroup.controls.tablemax_1" style="max-width: 300px;">
+    <label class="form-label"># Table salle:</label>
+    <input class="form-control" type="text" [formControl]="festivalGroup.controls.tablemax_2" style="max-width: 300px;">
+    <label class="form-label"># Table buvette:</label>
+    <input class="form-control" type="text" [formControl]="festivalGroup.controls.tablemax_3" style="max-width: 300px;">
+
+    <button class="btn btn-dark" type="submit" [disabled]="festivalGroup.invalid">Enregistrer</button>
+</form>
