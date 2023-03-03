@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="wrapper">
+    <table
+      mat-table
+      [dataSource]="festivals"
+      class="mat-elevation-z8 demo-table">
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nom">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Tables">
+        <th mat-header-cell *matHeaderCellDef>Tables</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tableTotal }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Prix Espace Entrée">
+        <th mat-header-cell *matHeaderCellDef>Prix Espace entrée</th>
+        <td mat-cell *matCellDef="let element">{{ element.tableprice_1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Prix Espace Salle">
+        <th mat-header-cell *matHeaderCellDef>Prix Espace Salle</th>
+        <td mat-cell *matCellDef="let element">{{ element.tableprice_2 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Prix Espace Buvette">
+        <th mat-header-cell *matHeaderCellDef>Prix Espace Buvette</th>
+        <td mat-cell *matCellDef="let element">{{ element.tableprice_3 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="m² Entrée">
+        <th mat-header-cell *matHeaderCellDef>m² Entrée</th>
+        <td mat-cell *matCellDef="let element">{{ element.sqmprice_1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="m² Salle">
+        <th mat-header-cell *matHeaderCellDef>m² Salle</th>
+        <td mat-cell *matCellDef="let element">{{ element.sqmprice_2 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="m² Buvette">
+        <th mat-header-cell *matHeaderCellDef>m² Buvette</th>
+        <td mat-cell *matCellDef="let element">{{ element.sqmprice_3 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="# Tables Entrée">
+        <th mat-header-cell *matHeaderCellDef># Tables Entrée</th>
+        <td mat-cell *matCellDef="let element">{{ element.tablemax_1 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="# Tables Salle">
+        <th mat-header-cell *matHeaderCellDef># Tables Salle</th>
+        <td mat-cell *matCellDef="let element">{{ element.tablemax_2 }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="# Tables Buvette">
+        <th mat-header-cell *matHeaderCellDef># Tables Buvette</th>
+        <td mat-cell *matCellDef="let element">{{ element.tablemax_3 }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        (click)="clickedRow(row)"
+        *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <button mat-raised-button (click)="onClick()">Ajouter un festival</button>
+</div>
