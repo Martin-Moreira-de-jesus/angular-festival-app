@@ -1,0 +1,56 @@
+<h2 class="festival_title">
+  {{ isCreate ? 'Créer un nouveau festival' : 'Modifier un Festival' }}
+</h2>
+<form
+  *ngIf="form"
+  [formGroup]="form"
+  class="festival_form"
+  (ngSubmit)="onSubmit()"
+  novalidate>
+  <mat-form-field ngDefaultControl>
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+  <mat-form-field ngDefaultControl>
+    <mat-label># Tables Entrée</mat-label>
+    <input matInput formControlName="tablemax_1" />
+  </mat-form-field>
+  <mat-form-field ngDefaultControl>
+    <mat-label>Prix Tables Entrée</mat-label>
+    <input matInput formControlName="tableprice_1" />
+  </mat-form-field>
+  <mat-form-field ngDefaultControl>
+    <mat-label># Tables Salle</mat-label>
+    <input matInput formControlName="tablemax_2" />
+  </mat-form-field>
+  <mat-form-field ngDefaultControl>
+    <mat-label>Prix Tables Salle</mat-label>
+    <input matInput formControlName="tableprice_2" />
+  </mat-form-field>
+  <mat-form-field ngDefaultControl>
+    <mat-label># Tables Buvette</mat-label>
+    <input matInput formControlName="tablemax_3" />
+  </mat-form-field>
+  <mat-form-field ngDefaultControl>
+    <mat-label>Prix Tables Salle</mat-label>
+    <input matInput formControlName="tableprice_3" />
+  </mat-form-field>
+  <button mat-raised-button color="primary">Enregistrer</button>
+  <button
+    mat-raised-button
+    color="accent"
+    type="button"
+    (click)="onCancel()"
+    style="margin-top: 20px">
+    Annuler
+  </button>
+  <button
+    *ngIf="!isCreate"
+    mat-raised-button
+    color="warn"
+    type="button"
+    (click)="onDelete()"
+    style="margin-top: 20px">
+    Supprimer
+  </button>
+</form>

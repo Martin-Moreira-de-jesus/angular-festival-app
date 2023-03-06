@@ -15,9 +15,15 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { EditorsListComponent } from './editors/editors-list/editors-list.component'
 
 @NgModule({
-  declarations: [AppComponent, FestivalListComponent, FestivalDetailsComponent],
+  declarations: [
+    AppComponent,
+    FestivalListComponent,
+    FestivalDetailsComponent,
+    EditorsListComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

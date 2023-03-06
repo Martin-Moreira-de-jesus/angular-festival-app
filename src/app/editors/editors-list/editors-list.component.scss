@@ -1,0 +1,29 @@
+.wrapper {
+  overflow: scroll;
+  margin: 5px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.demo-table {
+  position: relative;
+  margin: 5px;
+  overflow: scroll;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
