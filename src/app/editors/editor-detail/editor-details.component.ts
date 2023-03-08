@@ -30,11 +30,11 @@ export class EditorDetailsComponent implements OnInit {
   }> = this.formBuilder.group({
     name: ['', [Validators.required]],
     mail: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.pattern('[0-9]{10}')]],
+    phone: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
   })
 
   ngOnInit(): void {
-    const editorId = this.route.snapshot.paramMap.get('festivalId')
+    const editorId = this.route.snapshot.paramMap.get('editorId')
     if (editorId) {
       this.isCreate = false
       this.editorsService.getEditor(editorId).subscribe((e: Editor) => {
@@ -54,6 +54,7 @@ export class EditorDetailsComponent implements OnInit {
 
   onSubmit(): void {
     const data = Editor.fromJSON(this.form.value)
+    if (!this.form.valid) return
     if (!this.isCreate) {
       data.id = this.editor.id
       this.editorsService.updateEditor(data)

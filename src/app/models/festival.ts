@@ -1,5 +1,10 @@
 import { Optional } from '@angular/core'
 
+export type Attending = {
+  editorId: string
+  gamesPresented: string[]
+}
+
 export interface FestivalInterface {
   id: string
   name: string
@@ -19,7 +24,7 @@ export interface FestivalInterface {
   tablebooked_3: number
   sqmbooked_3: number
   revenue: number
-  visitor: boolean
+  attending: Attending[]
 }
 
 export class Festival implements FestivalInterface {
@@ -42,6 +47,7 @@ export class Festival implements FestivalInterface {
   public sqmbooked_3 = 0
   public revenue = 0
   public visitor = false
+  public attending: Attending[] = []
   public get tableTotal(): number {
     return +this.tablemax_1 + +this.tablemax_2 + +this.tablemax_3
   }
@@ -56,7 +62,8 @@ export class Festival implements FestivalInterface {
     @Optional() tableprice_3 = 300,
     @Optional() sqmprice_1?: number,
     @Optional() sqmprice_2?: number,
-    @Optional() sqmprice_3?: number
+    @Optional() sqmprice_3?: number,
+    @Optional() attending?: Attending[]
   ) {
     this.id = id
     this.name = name
@@ -74,6 +81,7 @@ export class Festival implements FestivalInterface {
       sqmprice_2 == null ? Math.round((this.tableprice_2 * 1) / 6) : sqmprice_2
     this.sqmprice_3 =
       sqmprice_3 == null ? Math.round((this.tableprice_3 * 1) / 6) : sqmprice_3
+    this.attending = attending ?? []
   }
 
   static fromJSON(json: any): Festival {
@@ -88,7 +96,8 @@ export class Festival implements FestivalInterface {
       json.tableprice_2,
       json.sqmprice_1,
       json.sqmprice_2,
-      json.sqmprice_3
+      json.sqmprice_3,
+      json.attending
     )
   }
 }

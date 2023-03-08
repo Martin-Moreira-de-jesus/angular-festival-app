@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnChanges, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Festival } from 'src/app/models/festival'
+import { Observable, tap } from 'rxjs'
+import { Editor } from 'src/app/models/editor'
+import { Attending, Festival } from 'src/app/models/festival'
+import { EditorsService } from 'src/app/service/editors.service'
 import { FestivalsService } from 'src/app/service/festival.service'
 
 @Component({
@@ -15,6 +18,7 @@ export class FestivalDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private festivalsService: FestivalsService,
+    private editorsService: EditorsService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
@@ -22,6 +26,7 @@ export class FestivalDetailsComponent implements OnInit {
   private snackBarDuration = 2
   isCreate = true
   festival!: Festival
+  editors: Observable<Editor[]> = new Observable()
 
   form: FormGroup<{
     name: FormControl
@@ -48,6 +53,13 @@ export class FestivalDetailsComponent implements OnInit {
       this.festivalsService.getFestival(festivalId).subscribe((e: Festival) => {
         this.festival = e
         this.setFormValue()
+        this.festival.attending.forEach(attendee => {
+          this.editorsService
+            .getEditor(attendee.editorId)
+            .subscribe((e: Editor) => {
+              this.editors.pipe(tap(editors => editors.push(e)))
+            })
+        })
       })
     }
   }
@@ -85,5 +97,15 @@ export class FestivalDetailsComponent implements OnInit {
   onDelete(): void {
     this.festivalsService.deleteFestival(this.festival)
     this.router.navigate(['/festivals'])
+  }
+
+  onSelect(editor: Editor): void {
+    const newAttendance: Attending = {
+      editorId: editor.id,
+      gamesPresented: [],
+    }
+
+    this.festival.attending.push(newAttendance)
+    this.festivalsService.updateFestival(this.festival)
   }
 }

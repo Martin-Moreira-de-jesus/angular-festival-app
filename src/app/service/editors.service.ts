@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore'
-import { map, Observable } from 'rxjs'
+import { filter, map, Observable } from 'rxjs'
 import { Editor } from '../models/editor'
 
 @Injectable({

@@ -2,7 +2,7 @@
   {{ isCreate ? 'Créer un nouveau festival' : 'Modifier un Festival' }}
 </h2>
 <form
-  *ngIf="form"
+  *ngIf="form && isCreate"
   [formGroup]="form"
   class="festival_form"
   (ngSubmit)="onSubmit()"
@@ -36,6 +36,16 @@
     <input matInput formControlName="tableprice_3" />
   </mat-form-field>
   <button mat-raised-button color="primary">Enregistrer</button>
+</form>
+
+<div
+  *ngIf="!isCreate"
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  ">
   <button
     mat-raised-button
     color="accent"
@@ -45,7 +55,6 @@
     Annuler
   </button>
   <button
-    *ngIf="!isCreate"
     mat-raised-button
     color="warn"
     type="button"
@@ -53,4 +62,61 @@
     style="margin-top: 20px">
     Supprimer
   </button>
-</form>
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Formulaire </mat-panel-title>
+      <mat-panel-description> Modifier le Festival </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form
+      *ngIf="form"
+      [formGroup]="form"
+      class="festival_form"
+      (ngSubmit)="onSubmit()"
+      novalidate>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label># Tables Entrée</mat-label>
+        <input matInput formControlName="tablemax_1" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Prix Tables Entrée</mat-label>
+        <input matInput formControlName="tableprice_1" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label># Tables Salle</mat-label>
+        <input matInput formControlName="tablemax_2" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Prix Tables Salle</mat-label>
+        <input matInput formControlName="tableprice_2" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label># Tables Buvette</mat-label>
+        <input matInput formControlName="tablemax_3" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Prix Tables Salle</mat-label>
+        <input matInput formControlName="tableprice_3" />
+      </mat-form-field>
+      <button mat-raised-button color="primary">Enregistrer</button>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Editeurs </mat-panel-title>
+      <mat-panel-description>
+        Gérer la présence des editeurs et les jeux présentés
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-editors-list
+      [editors]="editors"
+      [fromFestival]="true"></app-editors-list>
+    <app-editor-typeahead (selected)="onSelect($event)"></app-editor-typeahead>
+  </mat-expansion-panel>
+</mat-accordion>

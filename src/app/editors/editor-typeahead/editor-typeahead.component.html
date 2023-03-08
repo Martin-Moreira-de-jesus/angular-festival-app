@@ -1,0 +1,25 @@
+<form
+  [formGroup]="form"
+  class="festival_form"
+  style="display: flex; flex-direction: column; align-items: center"
+  (ngSubmit)="onSubmit()"
+  novalidate>
+  <mat-form-field ngDefaultControl>
+    <mat-label>Nom</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      formControlName="name"
+      [matAutocomplete]="auto" />
+  </mat-form-field>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option.name">
+      {{ option.name }}
+    </mat-option>
+  </mat-autocomplete>
+  <button mat-raised-button color="primary">Enregistrer</button>
+</form>

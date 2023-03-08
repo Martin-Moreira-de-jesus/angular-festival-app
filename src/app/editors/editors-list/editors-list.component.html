@@ -20,7 +20,7 @@
 
       <ng-container matColumnDef="Telephone">
         <th mat-header-cell *matHeaderCellDef>Téléphone</th>
-        <td mat-cell *matCellDef="let element">{{ element.tableprice_1 }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr
@@ -29,6 +29,7 @@
         *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
-
-  <button mat-raised-button (click)="onClick()">Ajouter un Editeur</button>
+  <button *ngIf="!fromFestival" mat-raised-button (click)="onClick()">
+    Ajouter un Editeur
+  </button>
 </div>

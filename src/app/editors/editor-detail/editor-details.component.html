@@ -2,7 +2,7 @@
   {{ isCreate ? 'Créer un nouveau festival' : 'Modifier un Festival' }}
 </h2>
 <form
-  *ngIf="form"
+  *ngIf="form && isCreate"
   [formGroup]="form"
   class="festival_form"
   (ngSubmit)="onSubmit()"
@@ -12,28 +12,12 @@
     <input matInput formControlName="name" />
   </mat-form-field>
   <mat-form-field ngDefaultControl>
-    <mat-label># Tables Entrée</mat-label>
-    <input matInput formControlName="tablemax_1" />
+    <mat-label>Mail</mat-label>
+    <input matInput formControlName="mail" />
   </mat-form-field>
   <mat-form-field ngDefaultControl>
-    <mat-label>Prix Tables Entrée</mat-label>
-    <input matInput formControlName="tableprice_1" />
-  </mat-form-field>
-  <mat-form-field ngDefaultControl>
-    <mat-label># Tables Salle</mat-label>
-    <input matInput formControlName="tablemax_2" />
-  </mat-form-field>
-  <mat-form-field ngDefaultControl>
-    <mat-label>Prix Tables Salle</mat-label>
-    <input matInput formControlName="tableprice_2" />
-  </mat-form-field>
-  <mat-form-field ngDefaultControl>
-    <mat-label># Tables Buvette</mat-label>
-    <input matInput formControlName="tablemax_3" />
-  </mat-form-field>
-  <mat-form-field ngDefaultControl>
-    <mat-label>Prix Tables Salle</mat-label>
-    <input matInput formControlName="tableprice_3" />
+    <mat-label>Téléphone</mat-label>
+    <input matInput formControlName="phone" />
   </mat-form-field>
   <button mat-raised-button color="primary">Enregistrer</button>
   <button
@@ -44,8 +28,25 @@
     style="margin-top: 20px">
     Annuler
   </button>
+</form>
+
+<div
+  *ngIf="!isCreate"
+  style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  ">
   <button
-    *ngIf="!isCreate"
+    mat-raised-button
+    color="accent"
+    type="button"
+    (click)="onCancel()"
+    style="margin-top: 20px">
+    Annuler
+  </button>
+  <button
     mat-raised-button
     color="warn"
     type="button"
@@ -53,4 +54,43 @@
     style="margin-top: 20px">
     Supprimer
   </button>
-</form>
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Formulaire </mat-panel-title>
+      <mat-panel-description>
+        Modifier ou supprimer l'editeur
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form
+      *ngIf="form"
+      [formGroup]="form"
+      class="festival_form"
+      (ngSubmit)="onSubmit()"
+      novalidate>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Mail</mat-label>
+        <input matInput formControlName="mail" />
+      </mat-form-field>
+      <mat-form-field ngDefaultControl>
+        <mat-label>Téléphone</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+      <button mat-raised-button color="primary">Enregistrer</button>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Manage games </mat-panel-title>
+      <mat-panel-description>
+        <p>Jeux</p>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -16,6 +16,10 @@ import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { EditorsListComponent } from './editors/editors-list/editors-list.component'
+import { EditorDetailsComponent } from './editors/editor-detail/editor-details.component'
+import { MatExpansionModule } from '@angular/material/expansion'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { EditorTypeaheadComponent } from './editors/editor-typeahead/editor-typeahead.component'
 
 @NgModule({
   declarations: [
@@ -23,6 +27,8 @@ import { EditorsListComponent } from './editors/editors-list/editors-list.compon
     FestivalListComponent,
     FestivalDetailsComponent,
     EditorsListComponent,
+    EditorDetailsComponent,
+    EditorTypeaheadComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +43,8 @@ import { EditorsListComponent } from './editors/editors-list/editors-list.compon
     ReactiveFormsModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatExpansionModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { Festival, FestivalInterface } from '../models/festival'
+import { Festival } from '../models/festival'
 import {
   AngularFirestore,
   AngularFirestoreCollection,
